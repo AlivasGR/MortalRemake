@@ -1,0 +1,19 @@
+#include "Sprite.h"
+
+Sprite::Sprite(Dim _x, Dim _y, AnimationFilm* film):
+	x(_x), y(_y), currFilm(film), visible(true) {
+	frameNo = currFilm->getTotalFrames();
+	setFrame(0);
+}
+
+void Sprite::setFrame(int i) {
+	if (i != frameNo) {
+		assert(i < currFilm->getTotalFrames());
+		frameBox = currFilm->getFrameBox(frameNo = i);
+	}
+}
+
+int Sprite::getFrame() const {
+	return frameNo;
+}
+
